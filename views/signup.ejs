@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo App - Sign Up</title>
+  <link rel="stylesheet" href="css/styless.css" />
+  <link rel="icon" href="./img/favicon4.png" type="image/x-icon">
+</head>
+
+<body>
+  <div class="box" id="heading">
+    <h1>Todo App</h1>
+  </div>
+
+  <div class="box">
+    <form id="signupForm" class="loginsignup-form" action="/register" method="post">
+      <h2>Sign Up</h2>
+
+      <% if (typeof errorMessage  !== 'undefined') { %>
+        <p class="errorMessage"><%= errorMessage %></p>
+      <% } %>
+
+      <input type="text" name="name" placeholder="Name" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Create New Password" required />
+      <input type="password" name="confirmPassword" placeholder="Confirm New Password" required />
+
+      <button type="submit">Sign Up</button>
+
+      <div class="col-sm-4">
+      </div>
+      <p>Already have an account? <a href="/">Log In</a></p>
+    </form>
+  </div>
+
+  <footer>&copy; 2023 Saket Patil</footer>
+</body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector(".loginsignup-form");
+    const passwordInput = form.querySelector("input[name='password']");
+    const confirmPasswordInput = form.querySelector("input[name='confirmPassword']");
+
+    form.addEventListener("submit", function (event) {
+      if (passwordInput.value.length < 6) {
+        event.preventDefault(); // Prevent form submission if password is less than 6 characters
+        alert("Password must be at least 6 characters long.");
+      } else if (passwordInput.value !== confirmPasswordInput.value) {
+        event.preventDefault(); // Prevent form submission if passwords don't match
+        alert("Passwords do not match. Please confirm your password.");
+      }
+    });
+  });
+</script>
+
+</html>
